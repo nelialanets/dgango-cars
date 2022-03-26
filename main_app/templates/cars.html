@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{%load static%}
+
+{% block title%}
+ Cars' List
+{%endblock%}
+
+{% block content %}
+
+<form>
+    <div>
+        <input type="text" name="name" placeholder="name" />
+        <input  type='submit' value='Search'/>
+    </div>
+    <!-- this a tag will redirect back to catlist without a query param! be sure to use the "name" you called the route in your main_app/urls.py -->
+    <a href ="{% url 'cars'%}"> Clear Search</a>
+</form>
+
+<h1>{{header}}</h1>
+    {% for car in cars%}
+    <img src="{{car.img}}" alt="{{car.name}}">
+    <a href="{% url 'car_detail' car.pk %}">
+    <h4>Name: {{car.name}}</h4>
+    <h4>Year: {{car.year}}</h4>
+    <h4> Country: {{car.country}}</h4>
+
+    {%endfor%}
+{%endblock%}

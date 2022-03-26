@@ -1,0 +1,11 @@
+{% extends 'base.html' %} 
+{%load static%}
+
+{% block content %}
+<h1> Update {{car.name}} </h1>
+<form  action= "" method="post">  <!--use action nand post methods for update CRUD-->
+  {% csrf_token %}
+  {{form.as_p}}
+  <input type='submit' value='Submit'/>
+</form>
+{% endblock %}

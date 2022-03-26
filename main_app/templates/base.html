@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+    <script src="{% static 'scripts/app.js' %}" defer></script>
+    <!-- CDN SCRIPTS CSS go here -->
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+    <nav class="nav-container">
+    <div class="left-side">
+     <h2>LOGO</h2>
+     </div>
+     <div class="right-side">
+    <ul>
+     <a href="/admin"> <li>Admin</li></a> 
+     <a href="/"> <li>Home</li></a> 
+     <a href=" /about"> <li>About</li></a>
+     <a href="/cars"><li>Car List</li></a>
+    <a href="{% url 'create_car' %}">Add Car</a>
+    </ul>
+</div>
+    </nav>
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>

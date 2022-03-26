@@ -1,0 +1,25 @@
+{% extends 'base.html' %} 
+{%load static%}
+{% block content %}
+
+<div>
+    <img src="{{car.img}}" alt="{{car.name}}" />
+  </div>
+  </div>
+  <div>
+    <h3>Model: {{car.name}}</h3>
+      <h3>Year: {{car.year}}</h3>
+      <h3>Country: {{car.country}</h3>
+  </div>
+  <p> Posted by:
+    <a href="/user/{{car.user.username}}"> {{car.user.username}}</a>
+    <p>
+  <div>
+    <a href="{% url 'car_update' car.pk %}">Update</a>
+    <a href="{% url 'car_delete' car.pk %}">Delete</a>
+</div>
+
+
+
+;
+{% endblock %}

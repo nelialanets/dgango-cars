@@ -1,0 +1,20 @@
+{%extends "basic.html"%}
+{%load static %}
+
+
+{%block contents%}
+
+<h1>{{username}}'s Car Collections</h1>>
+
+{%for car in cars %}
+
+    <a href="/cars/{{car.id}}">
+
+        <h3>{{car.name}}</h3>
+    </a>
+
+
+{%endfor%}
+
+{%endblock%}
+

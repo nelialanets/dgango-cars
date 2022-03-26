@@ -1,0 +1,18 @@
+<!-- templates/cattoy_index.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Cartype List</h1>
+
+{% for cartype in cartypes %}
+    <div>
+        <a href="{% url 'cartypes_show' crtype.id %}">
+            <div class="card-content">
+                <span>{{ cartype.caartype }}</span>
+                <p>Color: {{ cartype.color }}</p>
+            </div>
+        </a>
+    </div>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,17 @@
+<!-- templates/cattoy_show.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Cartype Details</h1>
+
+<div>
+    <div>
+        <span>{{ cartype.cartype }}</span>
+        <p>Color: {{ cartype.color }}</p>
+    </div>
+    <div>
+        <a href="{% url 'cartypes_update' cartype.id %}">Edit</a>
+        <a href="{% url 'cartypes_delete' cartype.id %}">Delete</a>
+    </div>
+</div>
+{% endblock %}
