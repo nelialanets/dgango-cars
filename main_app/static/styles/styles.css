@@ -47,7 +47,7 @@ flex: 50%;
     text-decoration: none;
     flex-direction: right;
 }
-a{color:white}
+a{color:black}
 
 /* Home page  */
 .homepage-container{
@@ -66,12 +66,7 @@ position: absolute;
   border-radius:5%;
 
 }
-.text{
-position: absolute;
-  bottom: 50%;
-  left: 16px;
 
-}
 .img1{
     width: 100%;
     margin-right: 5%;

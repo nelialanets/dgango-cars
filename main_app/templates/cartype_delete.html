@@ -1,0 +1,14 @@
+<!-- main_app/templates/cattoy_confirm_delete.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Delete Car type</h1>
+
+    <h4>Are you sure you want to delete <strong>{{ cartype}}</strong>?</h4>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Yes - Delete!">
+        <a href="{% url 'cartypes_show' cartype.id %}">Cancel</a>
+    </form>
+{% endblock %}

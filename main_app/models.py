@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class Car_Type(models.Model):
-    cartype=models.CharField(max_length=50)
+    name=models.CharField(max_length=50)
     color=models.CharField(max_length=50)
     
     def __self__(self):

@@ -1,7 +1,9 @@
 from asyncio import subprocess
 from dataclasses import field
+from email.mime import audio
 from nis import cat
 from re import template
+from wsgiref.util import request_uri
 from django.http import HttpResponse, HttpResponseRedirect # responses 
 from django.shortcuts import render
 from django.views import View 
@@ -12,7 +14,11 @@ from django.urls import reverse
 from .models import Car
 from .models import Car_Type
 from  django.contrib.auth.models import User
-
+# Auth
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 # Create your views here.
 
@@ -65,7 +71,7 @@ class Car_List(TemplateView):
         return context
 
         # CREATE 
-
+@method_decorator(login_required, name='dispatch')
 class Car_Create(CreateView):
     model=Car
     fields=['name', 'img', 'year', 'country', 'user']
@@ -79,12 +85,14 @@ class Car_Create(CreateView):
         self.object.user = self.request.user# wehn we  make a request for the user that comes with the form of the created car== it will show who created a car 
         return HttpResponseRedirect('/cars')
 
+@method_decorator(login_required, name='dispatch')
 class Car_Detail(DetailView):
     model=Car
     template_name='car_detail.html'
     def get_success_url(self):
      return reverse('car_detail', kwargs={'pk': self.object.pk}) # looking by id
 
+@method_decorator(login_required, name='dispatch')
 class Car_Update(UpdateView):
     model=Car
     fields=['name', 'img', 'year', 'country']
@@ -92,11 +100,13 @@ class Car_Update(UpdateView):
     def get_success_url(self):
      return reverse('car_detail', kwargs={'pk': self.object.pk}) 
 
+@method_decorator(login_required, name='dispatch')
 class Car_Delete(DeleteView):
     model=Car
     template_name="car_delete.html"
     success_url ='/cars/' #redirect 
 
+@login_required
 def Profile(request, username):
     user= User.objects.get(username= username)
     cars= Car.objects.filter(user=user)
@@ -104,6 +114,8 @@ def Profile(request, username):
 
 ## CRUD for Car_Type
 #index 
+
+
 def Cartype_Index(request):
     cartypes= Car_Type.objects.all()# going to the cat_model to grab all of the car types in the db
     return render (request, 'cartypes_index.html',{ 'cartypes': cartypes })
@@ -111,21 +123,70 @@ def Cartype_Index(request):
 def Cartype_Show(request, cartype_id):
     cartype=Car_Type.objects.get(id=cartype_id)
     return render (request, 'cartypes_show.html', {'cartype':cartype}) # rendering out cartype=Car_Type.objects.get(id=cartype_id) object
+@method_decorator(login_required, name='dispatch')
 
 class Cartype_Create(CreateView):
     model= Car_Type
-    template_name= "cartypes_create.html"
     fields='__all__'
+    template_name= "cartypes_create.html"
     success_url='/cartype'
 
+@method_decorator(login_required, name='dispatch')
 class Cartype_Update(UpdateView):
     mode=Car_Type
-    fields=['cartype' 'color']
+    fields=['name' 'color']
     template_field= 'cartypes_update.html'
     success_url='/cartype'
 
+
+@method_decorator(login_required, name='dispatch')
 class Cartype_Delete(DeleteView):
     model= Car_Type
     template_name= "cartypes_delete.html"
     success_url='/cartype'
+
+
+#  AUTH
+
+
+def Login_view(request):
+    # if POST then authentificate  the user (submitting user name and paswor)
+    if request.method =='POST':
+        form = AuthenticationForm(request, request.POST)
+        if form.is_valid():
+            u = form.changed_data['username']
+            p = form.changed_data['password']
+            user= authenticate(username=u, password=p)
+            if user is not None:
+                if user.is_active:
+                    login(request,user)
+                    return HttpResponseRedirect('/user/'+u)
+                else:
+                    print('the acount has been disableled')
+                    return HttpResponseRedirect('/login/')
+            else:
+                print('the username or passwork is incrrect')
+    else:
+        # user is going to the login page
+        form=AuthenticationForm()
+        return render(request, 'login.html', {'form': form})
+
+def Logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/cars')
+
+
+def Sighup_view(request):
+    if request.method=="POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user=form.save()
+            login(request, user)
+            print("hey", user.username)
+            return HttpResponseRedirect('/user/' + str(user.username))
+        else:
+            HttpResponse('<h1>Try again</h1>')
+    else:
+        form=UserCreationForm(request, 'sighup.html', {'form':form})
+
 

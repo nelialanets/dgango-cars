@@ -6,9 +6,9 @@
 
 {% for cartype in cartypes %}
     <div>
-        <a href="{% url 'cartypes_show' crtype.id %}">
+        <a href="{% url 'cartypes_show' cartype.id %}">
             <div class="card-content">
-                <span>{{ cartype.caartype }}</span>
+                <span> Car type: {{ cartype.name }}</span>
                 <p>Color: {{ cartype.color }}</p>
             </div>
         </a>
