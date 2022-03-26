@@ -13,11 +13,11 @@
         <input type="text" name="name" placeholder="name" />
         <input  type='submit' value='Search'/>
     </div>
-    <!-- this a tag will redirect back to catlist without a query param! be sure to use the "name" you called the route in your main_app/urls.py -->
-    <a href ="{% url 'cars'%}"> Clear Search</a>
-</form>
-
-<h1>{{header}}</h1>
+     <!-- this a tag will redirect back to catlist without a query param! be sure to use the "name" you called the route in your main_app/urls.py -->
+     <a href ="{% url 'cars'%}"> Clear Search</a>
+</div>
+</form> 
+<!-- <h1>{{header}}</h1> -->
     {% for car in cars%}
     <img src="{{car.img}}" alt="{{car.name}}">
     <a href="{% url 'car_detail' car.pk %}">
