@@ -2,7 +2,6 @@ body{
     margin: 0;
     padding: 0;
     height: 100vh;
-
 }
 
 h1{
@@ -14,35 +13,35 @@ h3{
 
 .nav-container{
     /* border: 1px black solid; */
+    height: 7%;
     display: flex;
     padding: 5px;
     margin-top: 1%;  
-    box-shadow: black;
     /* height: 100px; */
+    box-shadow:rgb(20, 45, 15);
   background-color:rgb(15, 15, 15);
   opacity: 0.6;
   background-image:
- linear-gradient(rgb(233, 227, 227), #222121)
+ linear-gradient(rgb(233, 227, 227), #222121) 
 }
 .left-side{
 
-flex: 50%;
-
+flex: 40%;
 
 }
 .right-side{
-    padding: 5px;
+    padding: 1px;
     text-decoration: none;
-    width: 5px;
-    flex: 40%;
-    margin: 5px;
+    width: 1px;
+    flex: 50%;
+    margin: 1px;
     justify-content: left;
 }
 .right-side, a{
-    font-size: 20px;
+    font-size: 15px;
     max-height: 80px;
-    margin: 15px ;
-    padding: 10px;
+    margin: 5px ;
+    padding: 5px;
     margin-left: 25px;
     text-decoration: none;
     flex-direction: right;
@@ -67,10 +66,46 @@ position: absolute;
 
 }
 
-.img1{
+.img1 {
     width: 100%;
     margin-right: 5%;
 }
-.img1:hover{
+/* .img1:hover{
     opacity: 0.8;
+} */
+.logo{
+display: flex;
+width: 20%;
+margin-top: -3%;  
 }
+/* car list  */
+.car-image{
+height: 30px;
+width: 30px;
+}
+.main-car-container{
+    display: flex;
+}
+.car-img2 img{
+width: 100%;
+}
+.form-search{
+align-items: center;
+justify-content: center;
+display: flex;
+
+/* } 
+
+.car-grid{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 10px;
+    padding: 10px; 
+}
+.car-grid, .images{
+    display: flex;
+   width:35%;
+   height: 35%;
+   padding: 1%;
+   margin: 5%;
+} */

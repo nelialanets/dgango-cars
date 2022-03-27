@@ -3,6 +3,7 @@ from dataclasses import field
 from email.mime import audio
 from nis import cat
 from re import template
+from urllib import response
 from wsgiref.util import request_uri
 from django.http import HttpResponse, HttpResponseRedirect # responses 
 from django.shortcuts import render
@@ -110,7 +111,7 @@ class Car_Delete(DeleteView):
 def Profile(request, username):
     user= User.objects.get(username= username)
     cars= Car.objects.filter(user=user)
-    return render(request, 'profile.html', {'username': username, 'caars': cars}) #{'username': username, 'caars': cars})  key and a value
+    return render(request, 'profile.html', {'username': username, 'cars': cars}) #{'username': username, 'caars': cars})  key and a value
 
 ## CRUD for Car_Type
 #index 
@@ -149,13 +150,13 @@ class Cartype_Delete(DeleteView):
 #  AUTH
 
 
-def Login_view(request):
+def login_view(request):
     # if POST then authentificate  the user (submitting user name and paswor)
     if request.method =='POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
-            u = form.changed_data['username']
-            p = form.changed_data['password']
+            u = form.cleaned_data['username']
+            p = form.cleaned_data['password']
             user= authenticate(username=u, password=p)
             if user is not None:
                 if user.is_active:
@@ -171,13 +172,13 @@ def Login_view(request):
         form=AuthenticationForm()
         return render(request, 'login.html', {'form': form})
 
-def Logout_view(request):
+def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/cars')
 
 
-def Sighup_view(request):
-    if request.method=="POST":
+def signup_view(request):
+    if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user=form.save()
@@ -187,6 +188,7 @@ def Sighup_view(request):
         else:
             HttpResponse('<h1>Try again</h1>')
     else:
-        form=UserCreationForm(request, 'sighup.html', {'form':form})
+        form=UserCreationForm()
+        return render(request, 'signup.html', {'form':form})
 
 

@@ -18,8 +18,8 @@ path('cartypes/<int:pk>/update', views.Cartype_Update.as_view(), name="cartypes_
 path('cartypes/<int:pk>/delete', views.Cartype_Delete.as_view(), name="cartypes_delete"),
 
 # Auath
-path('login/', views.Login_view, name='login'),
-path('logout/', views.Logout_view, name='logout'),
-path('signup/', views.Sighup_view, name='sighup'),
+path('login/', views.login_view, name='login'),
+path('logout/', views.logout_view, name='logout'),
+path('signup/', views.signup_view, name='signup'),
 
 ]
