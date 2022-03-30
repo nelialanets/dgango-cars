@@ -26,19 +26,18 @@
      
      <span><a href="{% url 'signup' %}">SignUp</a></span>
      {% endif %}
-     <a href="/"> Home</a> 
-   
+     
      <a href=" /about">About</a>
      
      <a href="/cars">Car List</a>
-    
-     <a href="/admin"> Admin</a> 
+
     
     <a href="{% url 'create_car' %}">Add Car</a>
 
     <a href="{% url 'cartypes_create' %}">Add Cartype</a>
     <a href="/"> Home</a> 
     <a href="/admin"> Admin</a> 
+    <a href="/profile"> Profile</a> 
 </div>
     </nav>
     {% block content %}

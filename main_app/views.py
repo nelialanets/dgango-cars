@@ -109,7 +109,7 @@ class Car_Delete(DeleteView):
 
 @login_required
 def Profile(request, username):
-    user= User.objects.get(username= username)
+    user= User.objects.get(username=username)
     cars= Car.objects.filter(user=user)
     return render(request, 'profile.html', {'username': username, 'cars': cars}) #{'username': username, 'caars': cars})  key and a value
 

@@ -25,7 +25,9 @@
 <!-- <div class="main-car-container"> -->
     <div class="car-grid">
     {% for car in cars%}
+    <div  class='car-list-page'>
     <img class="images" src="{{car.img}}" alt="{{car.name}}"/>
+    </div>
     </div>
 <div class="images-form">
     <a href="{% url 'car_detail' car.pk %}">
@@ -33,7 +35,7 @@
     <!-- <h4>Year: {{car.year}}</h4>
     <h4> Country: {{car.country}}</h4> -->
     <p>Posted by : 
-        <a href='/user/{{car.user.username}}'>{{car.user.username}}</a>
+    <a href='/user/{{car.user.username}}'>{{car.user.username}}</a>
     </p>
 </div>
 </div>

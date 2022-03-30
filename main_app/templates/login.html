@@ -1,11 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Login</h1>
+
+<div class="login-form">
 <form method="POST" action=".">
+<h1>BMW ID LOGIN</h1>
+  <div class='login-container'>
   {% csrf_token %}
   {{ form.as_p}}
-  <input type="submit" value="Submit" />
+  <button type="submit" value="Submit">
+    Submit
+  </button>
 </form>
-
+</div>
+</div>
+<div class="right-side-img">
+  <img src="https://www.autocar.co.uk/sites/autocar.co.uk/files/styles/gallery_slide/public/images/car-reviews/first-drives/legacy/bmw-100years-699_0_0.jpg?itok=Di8zQI60"/>
+</div>
 {% endblock %}

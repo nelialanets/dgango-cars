@@ -94,18 +94,76 @@ align-items: center;
 justify-content: center;
 display: flex;
 
-/* } 
-
-.car-grid{
+ } 
+ .car-grid{
     display: grid;
     grid-template-columns: auto auto auto auto;
     grid-gap: 10px;
     padding: 10px; 
-}
+} 
 .car-grid, .images{
     display: flex;
    width:35%;
    height: 35%;
    padding: 1%;
    margin: 5%;
-} */
+} 
+
+/* Log in container */
+
+.login-container, {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center ;
+    padding: 30%;
+    margin-left: 35%;
+   
+}
+.login-form {
+    display: flex;
+    flex: 40%;
+    justify-content: center;
+    align-items: center ;
+    margin: 10%;
+    border-radius: 1%;
+    width: 25%;
+    height: 50%;
+    margin-left: 5%;
+    border: 1px solid grey;
+    box-shadow:rgb(20, 45, 15);
+} 
+.login-form input{
+    padding: 5%;
+    margin: 5%;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    /* border: 1px solid grey;
+    box-shadow:rgb(20, 45, 15); */
+}
+.login-form button{
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    border: 1px solid grey;
+    box-shadow:rgb(20, 45, 15);
+    margin: 10%;
+    padding: 5% ;
+    background-color: blue;
+    color: white;
+}
+.login-form h1{
+    color: black;
+    font-size: large;
+    justify-content: center;
+    align-items: center;
+}
+.right-side-img{
+    margin-top: -49%;
+    margin-left:50%;
+}
+.right-side-img img{
+    height: 100vh;
+    width: 100%;
+}
